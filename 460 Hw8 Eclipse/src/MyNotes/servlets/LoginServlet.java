@@ -7,15 +7,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import MyNotes.servlets.*;
 import MyNotes.utils.*;
+
 import java.sql.*;
 
 public class LoginServlet extends HttpServlet {
-	public LoginServlet() {
-		super();
-	}
 
 	private OracleConnect oracle = new OracleConnect();
 	private Statement statement = oracle.getStatement();
+
+	public LoginServlet() {
+		super();
+	}
 
 	public void drawHeader(HttpServletRequest req, PrintWriter out) {
 		out.println("<html>");

@@ -11,8 +11,8 @@ public class OracleConnect {
 	public static final String user_name = "zuniga7";
 	public static final String password = "a2398";
 
-	private static Connection connection;
-	protected static Statement statement;
+	private Connection connection;
+	protected Statement statement;
 
 	public OracleConnect() {
 		// establish connection
@@ -47,7 +47,7 @@ public class OracleConnect {
 	/**
 	 * @return the statement
 	 */
-	public static Statement getStatement() {
+	public Statement getStatement() {
 		return statement;
 	}
 }
