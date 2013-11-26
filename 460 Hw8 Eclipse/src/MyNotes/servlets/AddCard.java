@@ -163,15 +163,70 @@ public class AddCard extends HttpServlet {
 
 		if (req.getParameter("Submit") == null) {
 			drawAddCardInformationMenu(req, out);
-		} else {
-			
+		}
+
+		else {
+
+			HttpSession session = req.getSession();
+			String sessionEmail = (String) session.getAttribute("UserEmail");
+
+			// check if email attribute is set...
+			if (sessionEmail == null) {
+				return; // not logged in
+			}
+
 			String boardName = req.getParameter("boardname");
 			String taskName = req.getParameter("taskname");
 			String description = req.getParameter("description");
 			String day = req.getParameter("day");
 			String month = req.getParameter("month");
 			String year = req.getParameter("year");
-			
+
+			try {
+				ResultSet boardResult = statement
+						.executeQuery("SELECT BoardName FROM Board WHERE BoardName='"
+								+ boardName + "'");
+
+				// invalid board name
+				if (boardResult.next() == false) {
+					// error
+					return;
+				}
+
+				// generate a new Creation ID
+				ResultSet resultID = statement
+						.executeQuery("SELECT MAX(CreationID) FROM Creation");
+				int newCreationID = 1; // ID for possibly being the first
+										// creation
+				if (resultID.next()) // move cursor to 1st row if possible
+					newCreationID = resultID.getInt(1) + 1; // the ID for our
+															// new creation
+
+				try {
+					// insert into card
+					statement.executeUpdate("INSERT INTO Card VALUES ('"
+							+ boardName + "', " + taskName + "', "
+							+ description + "', " + day + "', " + month + "', "
+							+ year + ")");
+
+					// insert into creates
+					statement.executeUpdate("INSERT INTO Creation VALUES ('"
+							+ sessionEmail + "', " + newCreationID + ")");
+
+					System.out.println("\nThe board " + boardName
+							+ " was successfully created!");
+
+				} catch (SQLException e) {
+					// there is a duplicate
+					System.out.println("\nCould Not Create: Duplicate Card!");
+					return;
+				}
+			}
+			// duplicate info
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 			drawUpdateMessage(req, out);
 		}
 

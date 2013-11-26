@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import MyNotes.servlets.*;
 import MyNotes.utils.*;
 
@@ -131,6 +132,17 @@ public class LoginServlet extends HttpServlet {
 			// if login success, call the following function
 			else {
 				drawLoginSuccess(req, out);
+
+				// initiate / set session
+				HttpSession session = req.getSession();
+				String sessionEmail = (String) session
+						.getAttribute("UserEmail");
+
+				// If attribute not found, set it into the session
+				if (sessionEmail == null) {
+					sessionEmail = new String(email);
+					session.setAttribute("UserEmail", sessionEmail);
+				}
 			}
 
 		} catch (SQLException e) {
