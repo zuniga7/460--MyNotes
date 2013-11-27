@@ -1,0 +1,15 @@
+body{
+	margin: 10px;
+}
+
+.panel{
+	margin: auto;
+	max-width: 550px;
+}
+
+.jumbotron{
+	text-align: center;
+	padding: 1px;
+	color: white;
+	background-color: darkblue;
+}

@@ -213,8 +213,7 @@ public class AddCard extends HttpServlet {
 					statement.executeUpdate("INSERT INTO Creation VALUES ('"
 							+ sessionEmail + "', " + newCreationID + ")");
 
-					System.out.println("\nThe board " + boardName
-							+ " was successfully created!");
+					System.out.println("\nThe card was successfully created!");
 
 				} catch (SQLException e) {
 					// there is a duplicate
