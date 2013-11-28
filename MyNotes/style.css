@@ -5,6 +5,27 @@ body{
 .panel{
 	margin: auto;
 	max-width: 550px;
+	/* opacity: 0.9; */
+}
+.row {
+	width: 100%;
+	margin: auto;
+}
+.row .btn:not(.btn-block) { 
+	width: 38%;
+	margin: auto; 
+	margin: 5px;
+}
+
+.btn-group-vertical{
+	width: 100%;
+	margin: auto; 
+}
+
+.btn-group .btn{
+	width: 40%;
+	margin: auto; 
+
 }
 
 .jumbotron{
@@ -13,3 +34,4 @@ body{
 	color: white;
 	background-color: darkblue;
 }
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<TITLE>Apache Tomcat Examples</TITLE>
+     	<link href="bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+     	<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+
+
+
+		<div class='container'>
+	
+		<div class="jumbotron">
+			<h1>MyNotes</h1>
+			<p>MyNotes: a UA Project Management Program</p>
+		</div>	
+
+
+
+
+		<!-- navbar -->
+		<nav class="navbar navbar-default" role="navigation">
+			<a class="navbar-brand" href="#">MyNotes</a>
+			<ul class="nav navbar-nav navbar-left">
+				<li><form class='navbar-form' name="MainMenu" action='LoginServlet' method='get'>
+					<button class='btn btn-default' type='submit' name='MainMenu'><span class="glyphicon glyphicon-home"></span> Home</button>
+			        </form></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a href="index.html"><button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-out"></span> Logout</button></a>
+			</ul>
+		</nav>
+
+
+		<!-- panel -->
+			<div class="panel panel-primary">
+		 	<div class="panel-heading">
+                <span class="glyphicon glyphicon-credit-card"></span> Add a new Card
+            </div>
+		 	<div class="panel-body">
+
+		        <form class="form-horizontal" role="form" name="login" action='AddCard' method='get'>
+
+		            <div class='form-group'>
+		                <label for='inputEmail3' class='col-sm-2 control-label'>BoardName</label>
+		                <div class='col-sm-10'>
+		                  <input type='text' class='form-control' id='inputEmail3' name='email' placeholder='Board Name' required>
+		                </div>
+		            </div>
+		            <div class='form-group'>
+		                <label for='inputTaskName3' class='col-sm-2 control-label'>TaskName</label>
+		                <div class='col-sm-10'>
+		                  <input type='text' class='form-control' id='inputPassword3' name='password' placeholder='Task Name' required>
+		                </div>
+		            </div>
+
+
+
+		            <div class="form-group">
+		                <div class="col-sm-offset-2 col-sm-10">
+		                  <button type="submit" name="Submit" class="btn btn-primary">Insert</button>
+
+		                  <form name="Cancel" action='AddCard' method='get'>
+							<button class='btn btn-danger' type='submit' name='Cancel'>Cancel</button>
+			        	</form>
+		                </div>
+		            </div>        
+		        </form>
+
+		        
+		        
+			
+			</div>
+			<div class="panel-footer">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" name="Submit" class="btn btn-primary">Insert</button>
+
+					<form name="Cancel" action=AddCard method=get>
+						<button class='btn btn-sm btn-danger' type='submit' name='Cancel'>Cancel</button>
+			        </form>
+
+			    	</div>
+		    	</div>
+            </div>
+
+		 	</div>
+			
+
+			<!-- quick shortcuts -->
+			<br>
+			<br>
+			<br>
+			<div class="panel panel-primary">
+                <div class="panel-heading">
+                        <span class="glyphicon glyphicon-bookmark"></span> Quick Shortcuts
+                </div>
+                <div class='panel-body'>
+
+                	<div class="row">
+                		<div class='col-xs-2 col-md-2'></div>
+                	   	<div class='col-xs-10 col-md-10'>
+                          <a href="AddCard" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-credit-card"></span> <br/>Add a Card</a>
+                          <a href="FindBoards" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-folder-close"></span> <br/>Find Boards</a>
+                          <a href="./JSP/SharedAssignment.jsp" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-signal"></span> <br/>User Reports</a>
+                          <a href="index.html" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-log-out"></span> <br/>Logout</a>
+                        </div>
+                   		<div class='col-md-2'></div>
+                    </div>    
+                </div>
+
+
+
+		</div><!-- container -->
+	</body>
+</html>

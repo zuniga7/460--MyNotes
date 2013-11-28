@@ -154,6 +154,20 @@ public class AddCard extends HttpServlet {
 		out.println("<br><br><br>");
 	}
 
+	private String niceForm(){
+		return "";
+	}
+	private String formGroup(String label) {
+		String formGroup = ""
+				+ "<div class='form-group'>"
+				+ "<label for='input"+label+"3' class='col-sm-2 control-label'>"+label+"</label>"
+				+ "<div class='col-sm-10'>"
+				+ "<input type='text' class='form-control' id='input"+label+"3' name='"+label.toLowerCase()+"' placeholder='"+label+"' required>" 
+				+ "</div></div>";
+
+		return formGroup;
+	}
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		res.setContentType("text/html");
