@@ -1,5 +1,5 @@
 body{
-	margin: 10px;
+	background:  url(leather.jpg);
 }
 
 .panel{
@@ -7,6 +7,7 @@ body{
 	max-width: 550px;
 	/* opacity: 0.9; */
 }
+
 .row {
 	width: 100%;
 	margin: auto;
@@ -32,6 +33,7 @@ body{
 	text-align: center;
 	padding: 1px;
 	color: white;
-	background-color: darkblue;
+	background: url(leatherb.jpg);
+	padding-bottom: 5px;
 }
 
