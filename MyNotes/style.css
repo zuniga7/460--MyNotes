@@ -1,5 +1,6 @@
 body{
-	background:  url(leather.jpg);
+	background:  url(leatherred.jpg);
+	padding-top: 15px;
 }
 
 .panel{
@@ -33,7 +34,7 @@ body{
 	text-align: center;
 	padding: 1px;
 	color: white;
-	background: url(leatherb.jpg);
-	padding-bottom: 5px;
+	background: url(leatherblue.jpg);
+	padding-bottom: 15px;
 }
 
