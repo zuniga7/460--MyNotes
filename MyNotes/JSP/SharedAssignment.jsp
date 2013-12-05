@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.*" %>
 
 <html>
 
@@ -48,6 +50,35 @@
 	      out.println("<tr>");
 	      out.println("<td> </td>");
 	      out.println("<td> " + name4 + " </td>");
+
+
+          String query = "SELECT Card, MyNotesUser"
+               + "FROM AssignedTo a1, User u1,"
+               + "AssignedTo a2, User u2"
+               + "WHERE a1.email = u1.email"
+               + "AND a2.email = u2.email"
+               + "AND a1.task = a2.task"
+               + "AND a1.email <> a2.email";
+          ResultSet result = statement.executeQuery(query);
+
+          String prev = "";
+          while(result.next()){
+            String card = result.String(1);
+            String name = result.String(2);
+            out.println("<tr>");
+            if(name.compareTo(prev) != 0){
+                out.println("<td> " + name + "</td>");
+            }
+            else{
+                out.println("<td></td>");
+            }
+            out.println("<td> " + card + " </td>");
+            prev = name;
+        }
+
+
+
+
         %>
 	      </table>	
 

@@ -227,11 +227,11 @@ public class AddCard extends HttpServlet {
 					statement.executeUpdate("INSERT INTO Creation VALUES ('"
 							+ sessionEmail + "', " + newCreationID + ")");
 
-					System.out.println("\nThe card was successfully created!");
+					out.println("\nThe card was successfully created!");
 
 				} catch (SQLException e) {
 					// there is a duplicate
-					System.out.println("\nCould Not Create: Duplicate Card!");
+					out.println("\nCould Not Create: Duplicate Card!");
 					return;
 				}
 			}
