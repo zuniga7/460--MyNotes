@@ -78,6 +78,9 @@ public class FindBoards extends HttpServlet {
 		 * coding the results
 		 */
 
+		out.println("<p> CS460 TODOs </p>");
+		out.println("<p> CS473 TODOs </p>");
+
 		String query = "";
 		ResultSet result;
 		try {
@@ -89,13 +92,15 @@ public class FindBoards extends HttpServlet {
 						+ "Please select another amount and try again.");
 				return;
 			}
+
+			while (result.next()) {
+
+			}
+
 		} catch (SQLException e) {
 			out.println("Error:  Request could not be carried out.");
 			e.printStackTrace();
 		}
-
-		out.println("<p> CS460 TODOs </p>");
-		out.println("<p> CS473 TODOs </p>");
 
 	}
 
