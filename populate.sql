@@ -32,16 +32,15 @@ INSERT INTO Subscribes VALUES('bob@email.arizona.edu', 'Movies');
 INSERT INTO Subscribes VALUES('jbright@email.arizona.edu', 'Gardening');
 INSERT INTO Subscribes VALUES('beau.bright@gmail.com', 'Teaching');
 INSERT INTO Subscribes VALUES('jbright@email.arizona.edu', 'Movies');
-INSERT INTO Subscribes VALUES('pj@yahoo.com', 'Travel');
 
 INSERT INTO Card VALUES('Gardening', 'Watering', 7, 'Water garden', 21, 12, 2013);
 INSERT INTO Card VALUES('Movies', 'Watching', 8, 'Watch different movies', 14, 2, 2014);
 INSERT INTO Card VALUES('Research', 'Learn math', 9, 'Try to learn math', 16, 5, 2015);
-INSERT INTO Card VALUES('Teaching', 'Teach class', 10, 'Teach students about a subject', 28, 9, 1992)
+INSERT INTO Card VALUES('Teaching', 'Teach class', 10, 'Teach students about a subject', 28, 9, 1992);
 
 INSERT INTO AssignedTo VALUES('Gardening', 'Watering', 'jbright@email.arizona.edu');
 INSERT INTO AssignedTo VALUES('Movies', 'Watching', 'bob@email.arizona.edu');
-INSERT INTO AssignedTo VALUES('Research', 'Learn math, 'bob@email.arizona.edu');
+INSERT INTO AssignedTo VALUES('Research', 'Learn math', 'bob@email.arizona.edu');
 INSERT INTO AssignedTo VALUES('Teaching', 'Teach class', 'arn91@yahoo.com');
 INSERT INTO AssignedTo VALUES('Gardening', 'Watering', 'beau.bright@gmail.com');
 INSERT INTO AssignedTo VALUES('Movies', 'Watching', 'pj@yahoo.com');
