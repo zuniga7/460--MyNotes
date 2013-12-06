@@ -154,16 +154,18 @@ public class AddCard extends HttpServlet {
 		out.println("<br><br><br>");
 	}
 
-	private String niceForm(){
+	private String niceForm() {
 		return "";
 	}
+
 	private String formGroup(String label) {
-		String formGroup = ""
-				+ "<div class='form-group'>"
-				+ "<label for='input"+label+"3' class='col-sm-2 control-label'>"+label+"</label>"
+		String formGroup = "" + "<div class='form-group'>"
+				+ "<label for='input" + label
+				+ "3' class='col-sm-2 control-label'>" + label + "</label>"
 				+ "<div class='col-sm-10'>"
-				+ "<input type='text' class='form-control' id='input"+label+"3' name='"+label.toLowerCase()+"' placeholder='"+label+"' required>" 
-				+ "</div></div>";
+				+ "<input type='text' class='form-control' id='input" + label
+				+ "3' name='" + label.toLowerCase() + "' placeholder='" + label
+				+ "' required>" + "</div></div>";
 
 		return formGroup;
 	}
@@ -203,7 +205,7 @@ public class AddCard extends HttpServlet {
 
 				// invalid board name
 				if (boardResult.next() == false) {
-					// error
+					out.println("<b>Invalid Board Name</b>"); // error
 					return;
 				}
 
@@ -230,8 +232,10 @@ public class AddCard extends HttpServlet {
 					out.println("\nThe card was successfully created!");
 
 				} catch (SQLException e) {
+
 					// there is a duplicate
-					out.println("\nCould Not Create: Duplicate Card!");
+					out.println("\nCould Not Create: Duplicate Card TaskName! "
+							+ e.getCause());
 					return;
 				}
 			}

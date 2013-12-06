@@ -66,8 +66,8 @@
 
           String prev = "";
           while(result.next()){
-            String card = result.String(1);
-            String name = result.String(2);
+            String card = result.getString(1);
+            String name = result.getString(2);
             out.println("<tr>");
             if(name.compareTo(prev) != 0){
                 out.println("<td> " + name + "</td>");

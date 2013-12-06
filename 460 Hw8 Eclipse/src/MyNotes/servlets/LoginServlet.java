@@ -113,6 +113,14 @@ public class LoginServlet extends HttpServlet {
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
+		// get session / already logged in
+		HttpSession session = req.getSession();
+		String sessionEmail = (String) session.getAttribute("UserEmail");
+		if (sessionEmail != null) {
+			drawLoginSuccess(req, out);
+			return;
+		}
+
 		String email = req.getParameter("email");
 		String username = req.getParameter("username");
 
@@ -132,11 +140,6 @@ public class LoginServlet extends HttpServlet {
 			// if login success, call the following function
 			else {
 				drawLoginSuccess(req, out);
-
-				// initiate / set session
-				HttpSession session = req.getSession();
-				String sessionEmail = (String) session
-						.getAttribute("UserEmail");
 
 				// If attribute not found, set it into the session
 				if (sessionEmail == null) {

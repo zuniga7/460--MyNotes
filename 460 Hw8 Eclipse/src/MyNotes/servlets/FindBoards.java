@@ -94,7 +94,7 @@ public class FindBoards extends HttpServlet {
 			}
 
 			while (result.next()) {
-				out.println(result.getString("BoardName"));
+				out.println("<p>"+result.getString("BoardName")+"</p>");
 			}
 
 		} catch (SQLException e) {
