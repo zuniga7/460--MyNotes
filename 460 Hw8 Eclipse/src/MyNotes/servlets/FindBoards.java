@@ -81,7 +81,7 @@ public class FindBoards extends HttpServlet {
 		out.println("<p> CS460 TODOs </p>");
 		out.println("<p> CS473 TODOs </p>");
 
-		String query = "";
+		String query = "SELECT BoardName FROM Subscribes GROUP BY BoardName HAVING COUNT(*) <= " + numUsers;
 		ResultSet result;
 		try {
 			result = statement.executeQuery(query);
@@ -94,7 +94,7 @@ public class FindBoards extends HttpServlet {
 			}
 
 			while (result.next()) {
-
+				out.println(result.getString("BoardName"));
 			}
 
 		} catch (SQLException e) {
