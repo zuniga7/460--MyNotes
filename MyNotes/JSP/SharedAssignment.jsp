@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.*" %>
+<%@ page import="MyNotes.utils.OracleConnect" %>
 
 <html>
 
@@ -51,6 +52,8 @@
 	      out.println("<td> </td>");
 	      out.println("<td> " + name4 + " </td>");
 
+          OracleConnect oracle = new OracleConnect();
+          Statement statement = oracle.getStatement();
 
           String query = "SELECT Card, MyNotesUser"
                + "FROM AssignedTo a1, User u1,"

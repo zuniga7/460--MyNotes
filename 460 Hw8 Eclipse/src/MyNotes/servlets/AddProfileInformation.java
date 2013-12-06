@@ -106,7 +106,7 @@ public class AddProfileInformation extends HttpServlet {
 
 	private void drawErrorDuplicate(HttpServletRequest req, PrintWriter out) {
 		out.println("<font size=5 face=\"Arial,Helvetica\">");
-		out.println("<b>Error: e-mail does not exist.</b></br>");
+		out.println("<b>Error:  User already exists!</b></br>");
 
 		drawAddProfileInformationMenu(req, out);
 	}
@@ -125,18 +125,19 @@ public class AddProfileInformation extends HttpServlet {
 		else {
 
 			String email = req.getParameter("email");
-			String username = req.getParameter("username");
+			String username = req.getParameter("user");
 
 			try {
 				statement.executeUpdate("INSERT INTO MyNotesUser VALUES('"
 						+ email + "', '" + username + "')");
+
+				drawUpdateMessage(req, out, email, username);
 
 			} catch (SQLException e) {
 				drawErrorDuplicate(req, out);
 				drawFooter(req, out);
 			}
 
-			drawUpdateMessage(req, out, email, username);
 		}
 
 		drawFooter(req, out);
