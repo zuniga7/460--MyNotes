@@ -24,6 +24,6 @@ INSERT INTO Subscribes VALUES('jbright@email.arizona.edu', 'Study');
 INSERT INTO Subscribes VALUES('jbright@email.arizona.edu', 'Movies');
 INSERT INTO Subscribes VALUES('pj@yahoo.com', 'Travel');
 
-INSERT INTO Card VALUES('Gardening', 'Water roses', 7, 'Water all of the roses', 21, 12, 2013);
-INSERT INTO Card VALUES('Movies', 'Watch movie', 8, 'Go to scary movie', 14, 2, 2014);
-INSERT INTO Card VALUES('Research', 'Learn math', 9, 'Try to learn math'
+INSERT INTO Card VALUES('Gardening', 'Watering', 7, 'Water garden', 21, 12, 2013);
+INSERT INTO Card VALUES('Movies', 'Watching', 8, 'Watch different movies', 14, 2, 2014);
+INSERT INTO Card VALUES('Research', 'Learn math', 9, 'Try to learn math', 16, 5, 2015);
