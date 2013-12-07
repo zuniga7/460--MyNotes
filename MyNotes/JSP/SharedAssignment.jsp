@@ -5,16 +5,23 @@
 
 <html>
 
-    <head><title>MyNotes: cards shared by multiple users</title></head>
+    <head>
+        <title>MyNotes: cards shared by multiple users</title>
+        <link href="bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
     <body link=#f0f0ff alink vlink=#f0f0ff>
         <p>
+        <div class='container'>
+    
+        <div class="jumbotron">
+            <h1>MyNotes</h1>
+            <p>MyNotes: a UA Project Management Program</p>
+        </div> 
             <center>
-            <font size=7 face="Arial, Helvetica, sans-serif" color="#000066">
-            <b>MyNotes</b><br>
-            <font size=4>
-                MyNotes: a UA Project Management Program</br>
-            </font>
-            </font>
+
+ 
+
             <hr>
             <br>
 
@@ -107,6 +114,7 @@
 
 
             </center>
+        </div>
         </p>
     </body>
 </html>
