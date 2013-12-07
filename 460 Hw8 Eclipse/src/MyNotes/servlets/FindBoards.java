@@ -76,7 +76,7 @@ public class FindBoards extends HttpServlet {
 	public void drawShowInfo(HttpServletRequest req, PrintWriter out) {
 		String numUsers = req.getParameter("numUsers");
 
-		out.println("<p><b>Boards that have at least " + numUsers
+		out.println("<p><b>Boards that have at most " + numUsers
 				+ " users:</b>");
 		/*
 		 * TODO: Execute the query and print out the results rather than hard

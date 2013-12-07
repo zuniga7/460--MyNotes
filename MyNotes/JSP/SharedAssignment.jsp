@@ -27,42 +27,17 @@
 
             <b>Users who share the same card:</b>
             <br>
-        <%
-                String name1 = "Jean-Pierre";
-                String name2 = "Rick Snodgrass";
-		String card1 = "Learn French";
-                String name3 = "Bill Gates";
-                String name4 = "Steve Jobs";
-		String card2 = "Make the Big Bucks";
-        %>
 
 	    <table border="1">
 	      <tr> 
 	      <td> <b> Card Task Name </b> </td>
 	      <td> <b> User Name </b> </td>
         <%
-	      // Card 1
-	      out.println("<tr>");
-	      out.println("<td> " + card1 + "</td>");
-	      out.println("<td> " + name1 + " </td>");
-
-	      out.println("<tr>");
-	      out.println("<td> </td>");
-	      out.println("<td> " + name2 + " </td>");
-
-	      // Card 2
-	      out.println("<tr>");
-	      out.println("<td> " + card2 + "</td>");
-	      out.println("<td> " + name3 + " </td>");
-
-	      out.println("<tr>");
-	      out.println("<td> </td>");
-	      out.println("<td> " + name4 + " </td>");
 
           OracleConnect oracle = new OracleConnect();
           Statement statement = oracle.getStatement();
 
-          String query = "SELECT a1.TaskName, User "
+          String query = "SELECT a1.TaskName, UserName "
                + "FROM AssignedTo a1, MyNotesUser u1, "
                + "AssignedTo a2, MyNotesUser u2 "
                + "WHERE a1.UserEmail = u1.UserEmail "
