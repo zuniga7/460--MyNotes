@@ -37,7 +37,7 @@
           OracleConnect oracle = new OracleConnect();
           Statement statement = oracle.getStatement();
 
-          String query = "SELECT a1.TaskName, a1.UserName "
+          String query = "SELECT a1.TaskName, u1.UserName "
                + "FROM AssignedTo a1, MyNotesUser u1, "
                + "AssignedTo a2, MyNotesUser u2 "
                + "WHERE a1.UserEmail = u1.UserEmail "
