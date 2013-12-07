@@ -25,8 +25,8 @@ public class LoginServlet extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>User Addition</title>");
-     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
-     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
+		out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+		out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
 		out.println("</head>");
 
 		out.println("<div class='container'>");
@@ -49,29 +49,23 @@ public class LoginServlet extends HttpServlet {
 
 	private void drawActiveOptions(HttpServletRequest req, PrintWriter out) {
 
-		out.println("<br>");
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-bookmark'></span> Quick Shortcuts");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
 
-		out.println("<form name=\"AddCard\" action=AddCard method=get>");
-		out.println("<input type=submit name=\"AddCard\" value=\"Add a Card\">");
-		out.println("</form>");
-
-		out.println("<br>");
-
-		out.println("<form name=\"findBoards\" action=FindBoards method=get>");
-		out.println("<input type=submit name=\"findBoard\" value=\"Find boards with at least a number of subscribers.\">");
-		out.println("</form>");
-
-		out.println("<br>");
-
-		out.println("<form name=\"CardShare\" action=./JSP/SharedAssignment.jsp>");
-		out.println("<input type=submit name=\"SharedAssignment\" value=\"Which users are assigned to the same card?\">");
-		out.println("</form>");
-
-		out.println("<br>");
-
-		out.println("<form name=\"logout\" action=index.html>");
-		out.println("<input type=submit name=\"logoutMyNotes\" value=\"Log out\">");
-		out.println("</form>");
+		out.println("<div class='row'>");
+		out.println("<div class='col-xs-2 col-md-2'></div>");
+		out.println("<div class='col-xs-10 col-md-10'>");
+		out.println("<a href='AddCard' class='btn btn-danger btn-lg' role='button'><span class='glyphicon glyphicon-credit-card'></span> <br/>Add a Card</a>");
+		out.println("<a href='FindBoards' class='btn btn-warning btn-lg' role='button'><span class='glyphicon glyphicon-folder-close'></span> <br/>Find Boards</a>");
+		out.println("<a href='./JSP/SharedAssignment.jsp' class='btn btn-primary btn-lg' role='button'><span class='glyphicon glyphicon-signal'></span> <br/>User Reports</a>");
+		out.println("<a href='index.html' class='btn btn-success btn-lg' role='button'><span class='glyphicon glyphicon-log-out'></span> <br/>Logout</a>");
+		out.println("</div>");
+		out.println("<div class='col-md-2'></div>");
+		out.println("</div>    ");
+		out.println("</div>");
 	}
 
 	private void drawFailOptions(HttpServletRequest req, PrintWriter out,
