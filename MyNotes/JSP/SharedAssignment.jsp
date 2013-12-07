@@ -55,28 +55,28 @@
           OracleConnect oracle = new OracleConnect();
           Statement statement = oracle.getStatement();
 
-          String query = "SELECT Card, MyNotesUser"
-               + "FROM AssignedTo a1, User u1,"
-               + "AssignedTo a2, User u2"
-               + "WHERE a1.email = u1.email"
-               + "AND a2.email = u2.email"
-               + "AND a1.task = a2.task"
-               + "AND a1.email <> a2.email";
+          String query = "SELECT a1.TaskName, User "
+               + "FROM AssignedTo a1, MyNotesUser u1, "
+               + "AssignedTo a2, MyNotesUser u2 "
+               + "WHERE a1.UserEmail = u1.UserEmail "
+               + "AND a2.UserEmail = u2.UserEmail "
+               + "AND a1.TaskName = a2.TaskName "
+               + "AND a1.UserEmail <> a2.UserEmail";
           ResultSet result = statement.executeQuery(query);
 
           String prev = "";
           while(result.next()){
             String card = result.getString(1);
-            String name = result.getString(2);
+            String username = result.getString(2);
             out.println("<tr>");
-            if(name.compareTo(prev) != 0){
-                out.println("<td> " + name + "</td>");
+            if(username.compareTo(prev) != 0){
+                out.println("<td> " + card + "</td>");
             }
             else{
                 out.println("<td></td>");
             }
-            out.println("<td> " + card + " </td>");
-            prev = name;
+            out.println("<td> " + username + " </td>");
+            prev = username;
         }
 
 

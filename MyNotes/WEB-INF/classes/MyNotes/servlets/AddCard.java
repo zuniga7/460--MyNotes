@@ -3,8 +3,10 @@ package MyNotes.servlets;
 import java.util.*;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.sql.*;
 
 import MyNotes.servlets.*;
@@ -52,19 +54,17 @@ public class AddCard extends HttpServlet {
 	public void drawHeader(HttpServletRequest req, PrintWriter out) {
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Activity Addition</title>");
+		out.println("<title>User Addition</title>");
+     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
 		out.println("</head>");
 
-		out.println("<body>");
-		out.println("<p>");
-		out.println("<center>");
-		out.println("<font face=\"Arial, Helvetica, sans-serif\" >");
-		out.println("<font color=\"#000066\">");
-		out.println("<center>\n<font size=7><strong>MyNotes</strong></font></br>");
-		out.println("<font size=4>MyNotes: a UA Project Management Program</font>");
-		out.println("</center>\n<font size=4><hr color=\"#000066\">");
-		out.println("Add new card </b><br></font>");
-		out.println("</font>");
+		out.println("<div class='container'>");
+		out.println("");
+		out.println("<div class='jumbotron'>");
+		out.println("	<h1>MyNotes</h1>");
+		out.println("	<p>MyNotes: a UA Project Management Program</p>");
+		out.println("</div>	");
 
 		out.println("<hr>");
 	}
@@ -72,6 +72,7 @@ public class AddCard extends HttpServlet {
 	public void drawFooter(HttpServletRequest req, PrintWriter out) {
 		out.println("</center>");
 		out.println("</p>");
+		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");
 	}
@@ -154,16 +155,18 @@ public class AddCard extends HttpServlet {
 		out.println("<br><br><br>");
 	}
 
-	private String niceForm(){
+	private String niceForm() {
 		return "";
 	}
+
 	private String formGroup(String label) {
-		String formGroup = ""
-				+ "<div class='form-group'>"
-				+ "<label for='input"+label+"3' class='col-sm-2 control-label'>"+label+"</label>"
+		String formGroup = "" + "<div class='form-group'>"
+				+ "<label for='input" + label
+				+ "3' class='col-sm-2 control-label'>" + label + "</label>"
 				+ "<div class='col-sm-10'>"
-				+ "<input type='text' class='form-control' id='input"+label+"3' name='"+label.toLowerCase()+"' placeholder='"+label+"' required>" 
-				+ "</div></div>";
+				+ "<input type='text' class='form-control' id='input" + label
+				+ "3' name='" + label.toLowerCase() + "' placeholder='" + label
+				+ "' required>" + "</div></div>";
 
 		return formGroup;
 	}
@@ -192,9 +195,9 @@ public class AddCard extends HttpServlet {
 			String boardName = req.getParameter("boardname");
 			String taskName = req.getParameter("taskname");
 			String description = req.getParameter("description");
-			String day = req.getParameter("day");
-			String month = req.getParameter("month");
-			String year = req.getParameter("year");
+			String dayString = req.getParameter("day");
+			String monthString = req.getParameter("month");
+			String yearString = req.getParameter("year");
 
 			try {
 				ResultSet boardResult = statement
@@ -203,7 +206,7 @@ public class AddCard extends HttpServlet {
 
 				// invalid board name
 				if (boardResult.next() == false) {
-					// error
+					out.println("<b>Invalid Board Name</b>"); // error
 					return;
 				}
 
@@ -217,21 +220,30 @@ public class AddCard extends HttpServlet {
 															// new creation
 
 				try {
+					int day = Integer.parseInt(dayString);
+					int month = Integer.parseInt(monthString);
+					int year = Integer.parseInt(yearString);
+
 					// insert into card
 					statement.executeUpdate("INSERT INTO Card VALUES ('"
-							+ boardName + "', " + taskName + "', "
-							+ description + "', " + day + "', " + month + "', "
+							+ boardName + "', '" + taskName + "', '"
+							+ description + "', " + day + "', " + month + ", "
 							+ year + ")");
 
 					// insert into creates
 					statement.executeUpdate("INSERT INTO Creation VALUES ('"
 							+ sessionEmail + "', " + newCreationID + ")");
 
-					out.println("\nThe card was successfully created!");
+					out.println("<br><p>The card was successfully created!</p>");
+
+					drawUpdateMessage(req, out);
 
 				} catch (SQLException e) {
 					// there is a duplicate
-					out.println("\nCould Not Create: Duplicate Card!");
+					out.println("<br><p>Could Not Create: Duplicate Card TaskName!</p>");
+					return;
+				} catch (NumberFormatException e) {
+					out.println("\nCould Not Create: Inserted a string where an integer was was asked! ");
 					return;
 				}
 			}
@@ -240,7 +252,6 @@ public class AddCard extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			drawUpdateMessage(req, out);
 		}
 
 		drawFooter(req, out);

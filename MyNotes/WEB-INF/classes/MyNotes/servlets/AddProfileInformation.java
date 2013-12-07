@@ -46,16 +46,16 @@ public class AddProfileInformation extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>User Addition</title>");
+     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
 		out.println("</head>");
 
-		out.println("<body>");
-		out.println("<p>");
-		out.println("<center>");
-		out.println("<font size=7 face=\"Arial, Helvetica, sans-serif\" color=\"#000066\">");
-		out.println("<center>\n<strong>MyNotes</strong></br></font>");
-		out.println("<font size=4>MyNotes: a UA Project Management Program");
-		out.println("</center>\n<hr color=\"#000066\">");
-		out.println("Add new user </b><br></font>");
+		out.println("<div class='container'>");
+		out.println("");
+		out.println("<div class='jumbotron'>");
+		out.println("	<h1>MyNotes</h1>");
+		out.println("	<p>MyNotes: a UA Project Management Program</p>");
+		out.println("</div>	");
 
 		out.println("<hr>");
 	}
@@ -63,6 +63,7 @@ public class AddProfileInformation extends HttpServlet {
 	public void drawFooter(HttpServletRequest req, PrintWriter out) {
 		out.println("</center>");
 		out.println("</p>");
+		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");
 	}

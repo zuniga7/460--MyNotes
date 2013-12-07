@@ -3,6 +3,7 @@ package MyNotes.servlets;
 import java.util.*;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -23,23 +24,25 @@ public class LoginServlet extends HttpServlet {
 	public void drawHeader(HttpServletRequest req, PrintWriter out) {
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>MyNotes logged in</title>");
+		out.println("<title>User Addition</title>");
+     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
 		out.println("</head>");
 
-		out.println("<body>");
-		out.println("<p>");
-		out.println("<center>");
-		out.println("<font size=7 face=\"Arial, Helvetica, sans-serif\" color=\"#000066\">");
-		out.println("<center>\n<strong>MyNotes</strong></br>");
-		out.println("<font size=4>MyNotes: a UA Project Management Program");
-		out.println("</center>\n<hr color=\"#000066\">");
-		out.println("<br><br>");
+		out.println("<div class='container'>");
+		out.println("");
+		out.println("<div class='jumbotron'>");
+		out.println("	<h1>MyNotes</h1>");
+		out.println("	<p>MyNotes: a UA Project Management Program</p>");
+		out.println("</div>	");
 
+		out.println("<hr>");
 	}
 
 	public void drawFooter(HttpServletRequest req, PrintWriter out) {
 		out.println("</center>");
 		out.println("</p>");
+		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");
 	}
@@ -113,6 +116,15 @@ public class LoginServlet extends HttpServlet {
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
+		// get session / already logged in
+		HttpSession session = req.getSession();
+		String sessionEmail = (String) session.getAttribute("UserEmail");
+		if (req.getParameter("MainMenu") != null) {
+			// sessionEmail != null
+			drawLoginSuccess(req, out);
+			return;
+		}
+
 		String email = req.getParameter("email");
 		String username = req.getParameter("username");
 
@@ -132,11 +144,6 @@ public class LoginServlet extends HttpServlet {
 			// if login success, call the following function
 			else {
 				drawLoginSuccess(req, out);
-
-				// initiate / set session
-				HttpSession session = req.getSession();
-				String sessionEmail = (String) session
-						.getAttribute("UserEmail");
 
 				// If attribute not found, set it into the session
 				if (sessionEmail == null) {

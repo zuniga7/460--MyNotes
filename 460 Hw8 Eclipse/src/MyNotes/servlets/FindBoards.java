@@ -1,8 +1,10 @@
 package MyNotes.servlets;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import MyNotes.servlets.*;
 import MyNotes.utils.OracleConnect;
 
@@ -18,18 +20,20 @@ public class FindBoards extends HttpServlet {
 
 	public void drawHeader(HttpServletRequest req, PrintWriter out) {
 		out.println("<html>");
-		out.println("<head><title>Find Boards</title></head>");
+		out.println("<head>");
+		out.println("<title>User Addition</title>");
+     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
+		out.println("</head>");
 
-		out.println("<body>");
-		out.println("<p>");
-		out.println("<center>");
-		out.println("<font face=\"Arial, Helvetica, sans-serif\">");
-		out.println("<font color=\"#000066\">");
-		out.println("<center>\n<font size=7><strong>MyNotes</strong></font></br>");
-		out.println("<font size=4>MyNotes: a UA Project Management Program</font>");
-		out.println("</center>\n<font size=4><hr color=\"#000066\">");
-		out.println("<b>Find Boards</b><br><br/></font>");
-		out.println("</font>");
+		out.println("<div class='container'>");
+		out.println("");
+		out.println("<div class='jumbotron'>");
+		out.println("	<h1>MyNotes</h1>");
+		out.println("	<p>MyNotes: a UA Project Management Program</p>");
+		out.println("</div>	");
+
+		out.println("<hr>");
 	}
 
 	public void drawFooter(HttpServletRequest req, PrintWriter out) {
@@ -52,6 +56,7 @@ public class FindBoards extends HttpServlet {
 		out.println("<br><br>");
 		out.println("</center>");
 		out.println("</p>");
+		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");
 	}
@@ -77,9 +82,6 @@ public class FindBoards extends HttpServlet {
 		 * TODO: Execute the query and print out the results rather than hard
 		 * coding the results
 		 */
-
-		out.println("<p> CS460 TODOs </p>");
-		out.println("<p> CS473 TODOs </p>");
 
 		String query = "SELECT BoardName FROM Subscribes GROUP BY BoardName HAVING COUNT(*) <= " + numUsers;
 		ResultSet result;
