@@ -51,7 +51,7 @@
             String card = result.getString(1);
             String username = result.getString(2);
             out.println("<tr>");
-            if(username.compareTo(prev) != 0){
+            if(card.compareTo(prev) != 0){
                 out.println("<td> " + card + "</td>");
             }
             else{
