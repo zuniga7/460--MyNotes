@@ -58,7 +58,7 @@
                 out.println("<td></td>");
             }
             out.println("<td> " + username + " </td>");
-            prev = username;
+            prev = card;
         }
 
 
