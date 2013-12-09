@@ -7,8 +7,8 @@
 
     <head>
         <title>MyNotes: cards shared by multiple users</title>
-        <link href="bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="../bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../style.css">
     </head>
     <body link=#f0f0ff alink vlink=#f0f0ff>
         <p>
@@ -18,11 +18,15 @@
             <h1>MyNotes</h1>
             <p>MyNotes: a UA Project Management Program</p>
         </div> 
+
+
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                        <span class='glyphicon glyphicon-signal'></span> Who is assigned to the same card
+                </div>
+                <div class='panel-body'> 
+
             <center>
-
- 
-
-            <hr>
             <br>
 
             <b>Users who share the same card:</b>
@@ -51,7 +55,7 @@
             String card = result.getString(1);
             String username = result.getString(2);
             out.println("<tr>");
-            if(username.compareTo(prev) != 0){
+            if(card.compareTo(prev) != 0){
                 out.println("<td> " + card + "</td>");
             }
             else{
@@ -67,8 +71,9 @@
         %>
 	      </table>	
 
+        </div>
+
                 <hr>
-                <br><br>
 
                 <table>
                 <tr>
