@@ -70,8 +70,6 @@ public class AddCard extends HttpServlet {
 	}
 
 	public void drawFooter(HttpServletRequest req, PrintWriter out) {
-		out.println("</center>");
-		out.println("</p>");
 		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");
@@ -79,61 +77,28 @@ public class AddCard extends HttpServlet {
 
 	public void drawAddCardInformationMenu(HttpServletRequest req,
 			PrintWriter out) {
-		out.println("<form name=\"AddCard\" action=AddCard method=get>");
-		out.println("<font size=3 face=\"Arial, Helvetica, sans-serif\" color=\"#000066\">");
-		out.println("<p>");
-		out.println("<b>Board Name:</b>");
-		out.println("<input type=text name=\"boardname\" required>");
-		out.println("<br>");
-		out.println("</p>");
+		
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-credit-card'></span> Add a new Card");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
+		out.println("<form class='form-horizontal' role='form' name='login' action='AddCard' method='get'>");
+		
+		out.println(niceForm());
+		
+		out.println("<div class='form-group'>");
+		out.println("<div class='col-sm-offset-2 col-sm-10'>");
+		out.println("<button type='submit' name='Submit' class='btn btn-primary'>Insert</button>");
+		out.println("<form name='Cancel' action='AddCard' method='get'>");
+		out.println("<button class='btn btn-danger' type='submit' name='Cancel'>Cancel</button>");
+		out.println("</form>");
+		out.println("</div>");
+		out.println("</div>");
+		out.println("</form>");
 
-		out.println("<p>");
-		out.println("<b>Task Name: </b>");
-		out.println("<input type=text name=\"taskname\" required>");
-		out.println("<br>");
-		out.println("</p>");
-
-		out.println("<p>");
-		out.println("<b>Description: </b>");
-		out.println("<input type=text name=\"description\" required>");
-		out.println("<br>");
-		out.println("</p>");
-
-		out.println("<p>");
-		out.println("<b>Day:</b>");
-		out.println("<input type=int name=\"day\" required>");
-		out.println("<br>");
-		out.println("</p>");
-
-		out.println("<p>");
-		out.println("<b>Month:</b>");
-		out.println("<input type=text name=\"month\" required>");
-		out.println("<br>");
-		out.println("</p>");
-
-		out.println("<p>");
-		out.println("<b>Year:</b>");
-		out.println("<input type=int name=\"year\" required>");
-		out.println("<br>");
-		out.println("</p>");
-
+		out.println("<hr>");
 		out.println("<table>");
-		out.println("<tr>");
-		out.println("<td>");
-		out.println("<input type=submit name=\"Submit\" value=\"Insert\">&nbsp&nbsp");
-		out.println("</td>");
-		out.println("</tr>");
-
-		out.println("</form>");
-
-		out.println("<tr>");
-		out.println("<td>");
-		out.println("<form name=\"Cancel\" action=AddCard method=get>");
-		out.println("<input type=submit name=\"Cancel\" value=\"Cancel\">&nbsp&nbsp");
-		out.println("</form>");
-		out.println("</td>");
-		out.println("</tr>");
-
 		out.println("<tr>");
 		out.println("<td>");
 		out.println("<form name=\"MainMenu\" action=LoginServlet>");
@@ -147,16 +112,25 @@ public class AddCard extends HttpServlet {
 		out.println("<form name=\"logout\" action=index.html>");
 		out.println("<input type=submit name=\"logoutMyNotes\" value=\"Logout\">");
 		out.println("</form>");
-		out.println("</p>");
 		out.println("</td>");
 		out.println("</tr>");
 
 		out.println("</table>");
-		out.println("<br><br><br>");
+		
+		out.println("</div>");
 	}
 
 	private String niceForm() {
-		return "";
+		String form = "";
+		
+		form += formGroup("BoardName");
+		form += formGroup("TaskName");
+		form += formGroup("Description");
+		form += formGroup("Day");
+		form += formGroup("Month");
+		form += formGroup("Year");
+		
+		return form;
 	}
 
 	private String formGroup(String label) {
@@ -206,7 +180,9 @@ public class AddCard extends HttpServlet {
 
 				// invalid board name
 				if (boardResult.next() == false) {
-					out.println("<b>Invalid Board Name</b>"); // error
+					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+					out.println("<p>Invalid Board Name</p>"); // error
+					out.println("</div>");			
 					return;
 				}
 
@@ -240,10 +216,14 @@ public class AddCard extends HttpServlet {
 
 				} catch (SQLException e) {
 					// there is a duplicate
-					out.println("<br><p>Could Not Create: Duplicate Card TaskName!</p>");
+					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+					out.println("<p>Could Not Create: Duplicate Card TaskName!</p>");
+					out.println("</div>");			
 					return;
 				} catch (NumberFormatException e) {
-					out.println("\nCould Not Create: Inserted a string where an integer was was asked! ");
+					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+					out.println("<p>Could Not Create: Inserted a string where an integer was was asked!</p>");
+					out.println("</div>");
 					return;
 				}
 			}
