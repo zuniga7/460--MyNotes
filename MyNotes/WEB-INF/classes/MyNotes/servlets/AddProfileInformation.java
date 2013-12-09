@@ -72,7 +72,7 @@ public class AddProfileInformation extends HttpServlet {
 			PrintWriter out) {
 		out.println("<div class='panel panel-primary'>");
 		out.println("<div class='panel-heading'>");
-		out.println("<span class='glyphicon glyphicon-credit-card'></span> Add a new Card");
+		out.println("<span class='glyphicon glyphicon-user'></span> New User!");
 		out.println("</div>");
 		out.println("<div class='panel-body'>");
 		
@@ -108,7 +108,6 @@ public class AddProfileInformation extends HttpServlet {
 		out.println("</tr>");
 
 		out.println("</table>");
-		out.println("<br><br><br>");
 		
 		out.println("</div>");
 	}
