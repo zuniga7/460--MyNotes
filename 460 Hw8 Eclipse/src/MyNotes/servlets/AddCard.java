@@ -32,7 +32,7 @@ public class AddCard extends HttpServlet
 		String month = (String) req.getParameter("month");
 		int year = Integer.parseInt(req.getParameter("year"));
 		String description = (String) req.getParameter("description");
-		
+
 		out.println("<div class='panel panel-primary'>");
 		out.println("<div class='panel-heading'>");
 		out.println("<span class='glyphicon glyphicon-credit-card'></span> The card was successfully created!");
@@ -223,17 +223,29 @@ public class AddCard extends HttpServlet
 					int month = Integer.parseInt(monthString);
 					int year = Integer.parseInt(yearString);
 
-					// insert into creates
-					statement.executeUpdate("INSERT INTO Creation VALUES ('"
-							+ sessionEmail + "', " + newCreationID + ")");
-					
-					// insert into card
-					statement.executeUpdate("INSERT INTO Card VALUES ('"
-							+ boardName + "', '" + taskName + "', "
-							+ newCreationID + ", '" + description + "', " + day
-							+ ", " + month + ", " + year + ")");
+					if (validDate(day, month, year))
+					{
+						// insert into creates
+						statement
+								.executeUpdate("INSERT INTO Creation VALUES ('"
+										+ sessionEmail + "', " + newCreationID
+										+ ")");
 
-					drawUpdateMessage(req, out, newCreationID);
+						// insert into card
+						statement.executeUpdate("INSERT INTO Card VALUES ('"
+								+ boardName + "', '" + taskName + "', "
+								+ newCreationID + ", '" + description + "', "
+								+ day + ", " + month + ", " + year + ")");
+
+						drawUpdateMessage(req, out, newCreationID);
+					}
+					else
+					{
+						out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+						out.println("<p>Could Not Create: Invalid Date!</p>");
+						out.println("</div>");
+						return;
+					}
 
 				} catch (SQLException e)
 				{
@@ -259,5 +271,27 @@ public class AddCard extends HttpServlet
 		}
 
 		drawFooter(req, out);
+	}
+
+	private boolean validDate(int day, int month, int year)
+	{
+		boolean isLeapYear = year % 4 == 0;
+
+		if (month <= 12 && month >= 1)
+		{
+			if (month == 1 || month == 3 || month == 5 || month == 7
+					|| month == 8 || month == 10 || month == 12)
+				return (day <= 31 && day > 0);
+			else if (month == 2 && isLeapYear)
+				return (day <= 29 && day > 0);
+
+			else if (month == 2 && !isLeapYear)
+				return (day <= 28 && day > 0);
+			else
+				return (day <= 30 && day > 0);
+		}
+
+		return false;
+
 	}
 }
