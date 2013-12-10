@@ -1,7 +1,6 @@
 package MyNotes.servlets;
 
 import java.util.*;
-
 import java.io.*;
 
 import javax.servlet.*;
@@ -21,15 +20,21 @@ public class AddCard extends HttpServlet {
 		super();
 	}
 
-	public void drawUpdateMessage(HttpServletRequest req, PrintWriter out) {
-		String board_name = "CS460";
-		String task_name = "Complete assignment 8";
-		int creationID = 1;
-		int day = 10;
-		String month = "December";
-		int year = 2013;
-		String description = "Create a really cool program. It's so cool we've started it the day we got the assignment and will finish a week early.";
-
+	public void drawUpdateMessage(HttpServletRequest req, PrintWriter out, int newID) {
+		String board_name = (String) req.getAttribute("boardname");
+		String task_name = (String) req.getAttribute("taskname");
+		int creationID = newID;
+		int day = (int) req.getAttribute("day");
+		String month = (String) req.getAttribute("month");
+		int year = (int) req.getAttribute("year");
+		String description = (String) req.getAttribute("description");
+		
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-credit-card'></span> Add a new Card");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
+		
 		out.println("<p><b>Board Name:</b>  " + board_name + "</p>");
 		out.println("<p><b>Task Name:</b>  " + task_name + "</p>");
 		out.println("<p><b>CreationID:</b>  " + creationID + "</p>");
@@ -49,6 +54,8 @@ public class AddCard extends HttpServlet {
 		out.println("<form name=\"logout\" action=index.html>");
 		out.println("<input type=submit name=\"logoutMyNotes\" value=\"Logout\">");
 		out.println("</form>");
+		
+		out.println("</div>");
 	}
 
 	public void drawHeader(HttpServletRequest req, PrintWriter out) {
@@ -203,7 +210,7 @@ public class AddCard extends HttpServlet {
 					// insert into card
 					statement.executeUpdate("INSERT INTO Card VALUES ('"
 							+ boardName + "', '" + taskName + "', '"
-							+ description + "', " + day + "', " + month + ", "
+							+ description + "', " + day + ", " + month + ", "
 							+ year + ")");
 
 					// insert into creates
@@ -212,7 +219,7 @@ public class AddCard extends HttpServlet {
 
 					out.println("<br><p>The card was successfully created!</p>");
 
-					drawUpdateMessage(req, out);
+					drawUpdateMessage(req, out, newCreationID);
 
 				} catch (SQLException e) {
 					// there is a duplicate
