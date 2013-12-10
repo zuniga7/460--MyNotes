@@ -223,15 +223,15 @@ public class AddCard extends HttpServlet
 					int month = Integer.parseInt(monthString);
 					int year = Integer.parseInt(yearString);
 
+					// insert into creates
+					statement.executeUpdate("INSERT INTO Creation VALUES ('"
+							+ sessionEmail + "', " + newCreationID + ")");
+					
 					// insert into card
 					statement.executeUpdate("INSERT INTO Card VALUES ('"
 							+ boardName + "', '" + taskName + "', "
 							+ newCreationID + ", '" + description + "', " + day
 							+ ", " + month + ", " + year + ")");
-
-					// insert into creates
-					statement.executeUpdate("INSERT INTO Creation VALUES ('"
-							+ sessionEmail + "', " + newCreationID + ")");
 
 					out.println("<br><p>The card was successfully created!</p>");
 
@@ -239,6 +239,7 @@ public class AddCard extends HttpServlet
 
 				} catch (SQLException e)
 				{
+					out.println(e.getMessage());
 					// there is a duplicate
 					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
 					out.println("<p>Could Not Create: Duplicate Card TaskName!</p>");
