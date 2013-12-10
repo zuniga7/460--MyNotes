@@ -21,10 +21,12 @@ public class AddProfileInformation extends HttpServlet {
 
 	public void drawUpdateMessage(HttpServletRequest req, PrintWriter out,
 			String email, String username) {
-
-		out.println("New user added!");
-
-		out.println("<br>");
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-user'></span> New user added!");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
+		
 
 		out.println("<p><b>Email:</b>  " + email + "</p>");
 		out.println("<p><b>Username:</b>  " + username + "</p>");
@@ -40,6 +42,8 @@ public class AddProfileInformation extends HttpServlet {
 		out.println("<form name=\"logout\" action=index.html>");
 		out.println("<input type=submit name=\"logoutMyNotes\" value=\"Logout\">");
 		out.println("</form>");
+		
+		out.println("</div>");
 	}
 
 	public void drawHeader(HttpServletRequest req, PrintWriter out) {
