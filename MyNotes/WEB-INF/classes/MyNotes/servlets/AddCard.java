@@ -1,7 +1,6 @@
 package MyNotes.servlets;
 
 import java.util.*;
-
 import java.io.*;
 
 import javax.servlet.*;
@@ -12,23 +11,33 @@ import java.sql.*;
 import MyNotes.servlets.*;
 import MyNotes.utils.OracleConnect;
 
-public class AddCard extends HttpServlet {
+public class AddCard extends HttpServlet
+{
 
 	private OracleConnect oracle = new OracleConnect();
 	private Statement statement = oracle.getStatement();
 
-	public AddCard() {
+	public AddCard()
+	{
 		super();
 	}
 
-	public void drawUpdateMessage(HttpServletRequest req, PrintWriter out) {
-		String board_name = "CS460";
-		String task_name = "Complete assignment 8";
-		int creationID = 1;
-		int day = 10;
-		String month = "December";
-		int year = 2013;
-		String description = "Create a really cool program. It's so cool we've started it the day we got the assignment and will finish a week early.";
+	public void drawUpdateMessage(HttpServletRequest req, PrintWriter out,
+			int newID)
+	{
+		String board_name = (String) req.getParameter("boardname");
+		String task_name = (String) req.getParameter("taskname");
+		int creationID = newID;
+		int day = Integer.parseInt(req.getParameter("day"));
+		String month = (String) req.getParameter("month");
+		int year = Integer.parseInt(req.getParameter("year"));
+		String description = (String) req.getParameter("description");
+		
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-credit-card'></span> The card was successfully created!");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
 
 		out.println("<p><b>Board Name:</b>  " + board_name + "</p>");
 		out.println("<p><b>Task Name:</b>  " + task_name + "</p>");
@@ -49,14 +58,17 @@ public class AddCard extends HttpServlet {
 		out.println("<form name=\"logout\" action=index.html>");
 		out.println("<input type=submit name=\"logoutMyNotes\" value=\"Logout\">");
 		out.println("</form>");
+
+		out.println("</div>");
 	}
 
-	public void drawHeader(HttpServletRequest req, PrintWriter out) {
+	public void drawHeader(HttpServletRequest req, PrintWriter out)
+	{
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>User Addition</title>");
-     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
-     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
+		out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+		out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
 		out.println("</head>");
 
 		out.println("<div class='container'>");
@@ -69,24 +81,26 @@ public class AddCard extends HttpServlet {
 		out.println("<hr>");
 	}
 
-	public void drawFooter(HttpServletRequest req, PrintWriter out) {
+	public void drawFooter(HttpServletRequest req, PrintWriter out)
+	{
 		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");
 	}
 
 	public void drawAddCardInformationMenu(HttpServletRequest req,
-			PrintWriter out) {
-		
+			PrintWriter out)
+	{
+
 		out.println("<div class='panel panel-primary'>");
 		out.println("<div class='panel-heading'>");
 		out.println("<span class='glyphicon glyphicon-credit-card'></span> Add a new Card");
 		out.println("</div>");
 		out.println("<div class='panel-body'>");
 		out.println("<form class='form-horizontal' role='form' name='login' action='AddCard' method='get'>");
-		
+
 		out.println(niceForm());
-		
+
 		out.println("<div class='form-group'>");
 		out.println("<div class='col-sm-offset-2 col-sm-10'>");
 		out.println("<button type='submit' name='Submit' class='btn btn-primary'>Insert</button>");
@@ -116,24 +130,26 @@ public class AddCard extends HttpServlet {
 		out.println("</tr>");
 
 		out.println("</table>");
-		
+
 		out.println("</div>");
 	}
 
-	private String niceForm() {
+	private String niceForm()
+	{
 		String form = "";
-		
+
 		form += formGroup("BoardName");
 		form += formGroup("TaskName");
 		form += formGroup("Description");
 		form += formGroup("Day");
 		form += formGroup("Month");
 		form += formGroup("Year");
-		
+
 		return form;
 	}
 
-	private String formGroup(String label) {
+	private String formGroup(String label)
+	{
 		String formGroup = "" + "<div class='form-group'>"
 				+ "<label for='input" + label
 				+ "3' class='col-sm-2 control-label'>" + label + "</label>"
@@ -146,23 +162,27 @@ public class AddCard extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
+			throws ServletException, IOException
+	{
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
 		drawHeader(req, out);
 
-		if (req.getParameter("Submit") == null) {
+		if (req.getParameter("Submit") == null)
+		{
 			drawAddCardInformationMenu(req, out);
 		}
 
-		else {
+		else
+		{
 
 			HttpSession session = req.getSession();
 			String sessionEmail = (String) session.getAttribute("UserEmail");
 
 			// check if email attribute is set...
-			if (sessionEmail == null) {
+			if (sessionEmail == null)
+			{
 				return; // not logged in
 			}
 
@@ -173,16 +193,18 @@ public class AddCard extends HttpServlet {
 			String monthString = req.getParameter("month");
 			String yearString = req.getParameter("year");
 
-			try {
+			try
+			{
 				ResultSet boardResult = statement
 						.executeQuery("SELECT BoardName FROM Board WHERE BoardName='"
 								+ boardName + "'");
 
 				// invalid board name
-				if (boardResult.next() == false) {
+				if (boardResult.next() == false)
+				{
 					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
 					out.println("<p>Invalid Board Name</p>"); // error
-					out.println("</div>");			
+					out.println("</div>");
 					return;
 				}
 
@@ -195,32 +217,34 @@ public class AddCard extends HttpServlet {
 					newCreationID = resultID.getInt(1) + 1; // the ID for our
 															// new creation
 
-				try {
+				try
+				{
 					int day = Integer.parseInt(dayString);
 					int month = Integer.parseInt(monthString);
 					int year = Integer.parseInt(yearString);
 
-					// insert into card
-					statement.executeUpdate("INSERT INTO Card VALUES ('"
-							+ boardName + "', '" + taskName + "', '"
-							+ description + "', " + day + "', " + month + ", "
-							+ year + ")");
-
 					// insert into creates
 					statement.executeUpdate("INSERT INTO Creation VALUES ('"
 							+ sessionEmail + "', " + newCreationID + ")");
+					
+					// insert into card
+					statement.executeUpdate("INSERT INTO Card VALUES ('"
+							+ boardName + "', '" + taskName + "', "
+							+ newCreationID + ", '" + description + "', " + day
+							+ ", " + month + ", " + year + ")");
 
-					out.println("<br><p>The card was successfully created!</p>");
+					drawUpdateMessage(req, out, newCreationID);
 
-					drawUpdateMessage(req, out);
-
-				} catch (SQLException e) {
+				} catch (SQLException e)
+				{
+					out.println(e.getMessage());
 					// there is a duplicate
 					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
 					out.println("<p>Could Not Create: Duplicate Card TaskName!</p>");
-					out.println("</div>");			
+					out.println("</div>");
 					return;
-				} catch (NumberFormatException e) {
+				} catch (NumberFormatException e)
+				{
 					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
 					out.println("<p>Could Not Create: Inserted a string where an integer was was asked!</p>");
 					out.println("</div>");
@@ -228,7 +252,8 @@ public class AddCard extends HttpServlet {
 				}
 			}
 			// duplicate info
-			catch (SQLException e) {
+			catch (SQLException e)
+			{
 				e.printStackTrace();
 			}
 

@@ -25,13 +25,13 @@ public class AddCard extends HttpServlet
 	public void drawUpdateMessage(HttpServletRequest req, PrintWriter out,
 			int newID)
 	{
-		String board_name = (String) req.getAttribute("boardname");
-		String task_name = (String) req.getAttribute("taskname");
+		String board_name = (String) req.getParameter("boardname");
+		String task_name = (String) req.getParameter("taskname");
 		int creationID = newID;
-		int day = (int) req.getAttribute("day");
-		String month = (String) req.getAttribute("month");
-		int year = (int) req.getAttribute("year");
-		String description = (String) req.getAttribute("description");
+		int day = Integer.parseInt(req.getParameter("day"));
+		String month = (String) req.getParameter("month");
+		int year = Integer.parseInt(req.getParameter("year"));
+		String description = (String) req.getParameter("description");
 		
 		out.println("<div class='panel panel-primary'>");
 		out.println("<div class='panel-heading'>");
