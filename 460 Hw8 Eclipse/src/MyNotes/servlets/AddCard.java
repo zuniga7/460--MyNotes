@@ -32,10 +32,10 @@ public class AddCard extends HttpServlet
 		String month = (String) req.getAttribute("month");
 		int year = (int) req.getAttribute("year");
 		String description = (String) req.getAttribute("description");
-
+		
 		out.println("<div class='panel panel-primary'>");
 		out.println("<div class='panel-heading'>");
-		out.println("<span class='glyphicon glyphicon-credit-card'></span> Add a new Card");
+		out.println("<span class='glyphicon glyphicon-credit-card'></span> The card was successfully created!");
 		out.println("</div>");
 		out.println("<div class='panel-body'>");
 
@@ -232,8 +232,6 @@ public class AddCard extends HttpServlet
 							+ boardName + "', '" + taskName + "', "
 							+ newCreationID + ", '" + description + "', " + day
 							+ ", " + month + ", " + year + ")");
-
-					out.println("<br><p>The card was successfully created!</p>");
 
 					drawUpdateMessage(req, out, newCreationID);
 
