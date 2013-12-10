@@ -237,7 +237,6 @@ public class AddCard extends HttpServlet
 
 				} catch (SQLException e)
 				{
-					out.println(e.getMessage());
 					// there is a duplicate
 					out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
 					out.println("<p>Could Not Create: Duplicate Card TaskName!</p>");
