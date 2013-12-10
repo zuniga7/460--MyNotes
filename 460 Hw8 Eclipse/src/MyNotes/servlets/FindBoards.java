@@ -65,15 +65,28 @@ public class FindBoards extends HttpServlet {
 
 		System.out.println("CSC460: in drawGetUser___");
 
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-search'></span> Search");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
+		
 		out.println("<form name=\"userSearch\" action=FindBoards method=get>");
 		out.println("Enter max number of subscribers: ");
 		out.println("<input type=text size=30 name=\"numUsers\">");
 		out.println("<input type=submit name=\"findBoards\" value=\"Find\" >");
 		out.println("</form>");
 
+		out.println("</div>");
 	}
 
 	public void drawShowInfo(HttpServletRequest req, PrintWriter out) {
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-thumbs-up'></span> Results!");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
+		
 		String numUsers = req.getParameter("numUsers");
 
 		out.println("<p><b>Boards that have at most " + numUsers
@@ -99,8 +112,13 @@ public class FindBoards extends HttpServlet {
 				out.println("<p>"+result.getString("BoardName")+"</p>");
 			}
 
+			out.println("</div>");
+
 		} catch (SQLException e) {
-			out.println("Error:  Request could not be carried out.");
+			out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+			out.println("<p>Error:  Request could not be carried out.</p>");
+			out.println("</div>");
+
 			e.printStackTrace();
 		}
 

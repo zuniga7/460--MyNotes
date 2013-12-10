@@ -71,16 +71,20 @@ public class LoginServlet extends HttpServlet {
 	private void drawFailOptions(HttpServletRequest req, PrintWriter out,
 			int errorFlag) {
 		out.println("<font size=5 face=\"Arial,Helvetica\">");
+		out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+
 
 		// error type
 		if (errorFlag == 1)
 			out.println("<b>Error: e-mail does not exist.</b></br>");
 		else if (errorFlag == 2)
-			out.println("<b>Error: Enter the correct username.</b></br>");
+			out.println("<b>Error: Enter the correct username.</b></br></br>");
 
 		out.println("<font size=4>");
 		out.println("<b>MyNotes: a UA Project Management Program</b><br></font>");
 		out.println("</font>");
+
+		out.println("</div>");			
 
 		out.println("<hr");
 		out.println("<br><br>");

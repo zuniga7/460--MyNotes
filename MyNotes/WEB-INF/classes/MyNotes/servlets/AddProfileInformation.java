@@ -46,8 +46,8 @@ public class AddProfileInformation extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>User Addition</title>");
-     	out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
-     	out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
+		out.println("<link href='bootstrap3/css/bootstrap.min.css' rel='stylesheet'>");
+		out.println("<link rel='stylesheet' type='text/css' href='style.css'>");
 		out.println("</head>");
 
 		out.println("<div class='container'>");
@@ -70,6 +70,12 @@ public class AddProfileInformation extends HttpServlet {
 
 	public void drawAddProfileInformationMenu(HttpServletRequest req,
 			PrintWriter out) {
+		out.println("<div class='panel panel-primary'>");
+		out.println("<div class='panel-heading'>");
+		out.println("<span class='glyphicon glyphicon-user'></span> New User!");
+		out.println("</div>");
+		out.println("<div class='panel-body'>");
+		
 		out.println("<form name=\"AddProfileInformation\" action=AddProfileInformation method=get>");
 		out.println("<font size=3 face=\"Arial, Helvetica, sans-serif\" color=\"#000066\">");
 		out.println("<p>");
@@ -102,12 +108,16 @@ public class AddProfileInformation extends HttpServlet {
 		out.println("</tr>");
 
 		out.println("</table>");
-		out.println("<br><br><br>");
+		
+		out.println("</div>");
 	}
 
 	private void drawErrorDuplicate(HttpServletRequest req, PrintWriter out) {
 		out.println("<font size=5 face=\"Arial,Helvetica\">");
-		out.println("<b>Error:  User already exists!</b></br>");
+
+		out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
+		out.println("<p>Error: User already exists!</p>");
+		out.println("</div>");
 
 		drawAddProfileInformationMenu(req, out);
 	}
