@@ -13,7 +13,6 @@ import MyNotes.utils.OracleConnect;
 
 public class AddCard extends HttpServlet
 {
-
 	private OracleConnect oracle = new OracleConnect();
 	private Statement statement = oracle.getStatement();
 
@@ -238,8 +237,7 @@ public class AddCard extends HttpServlet
 								+ day + ", " + month + ", " + year + ")");
 
 						drawUpdateMessage(req, out, newCreationID);
-					}
-					else
+					} else
 					{
 						out.println("<div class='alert alert-warning'><h4>Oh snap! You got an error!</h4>");
 						out.println("<p>Could Not Create: Invalid Date!</p>");
@@ -275,20 +273,24 @@ public class AddCard extends HttpServlet
 
 	private boolean validDate(int day, int month, int year)
 	{
-		boolean isLeapYear = year % 4 == 0;
+		if (day < 1 || month < 1 || year < 1)
+			return false;
+		GregorianCalendar calendar = new GregorianCalendar();
+
+		boolean isLeapYear = calendar.isLeapYear(year);
 
 		if (month <= 12 && month >= 1)
 		{
 			if (month == 1 || month == 3 || month == 5 || month == 7
 					|| month == 8 || month == 10 || month == 12)
-				return (day <= 31 && day > 0);
+				return day <= 31;
 			else if (month == 2 && isLeapYear)
-				return (day <= 29 && day > 0);
+				return day <= 29;
 
 			else if (month == 2 && !isLeapYear)
-				return (day <= 28 && day > 0);
+				return day <= 28;
 			else
-				return (day <= 30 && day > 0);
+				return day <= 30;
 		}
 
 		return false;
